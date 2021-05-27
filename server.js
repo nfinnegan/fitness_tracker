@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
+const routes = require("./controllers");
 const PORT = process.env.PORT || 3000;
 
 //const db = require("./models");
@@ -18,6 +19,9 @@ app.use(express.json());
 
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));
+
+//Routes
+app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
