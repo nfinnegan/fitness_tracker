@@ -2,7 +2,8 @@ const router = require("express").Router();
 const Workout = require("../../models/workoutModel");
 
 //create new workout
-router.get("/workouts", ({ body }, res) => {
+router.post("/workouts", ({ body }, res) => {
+  console.log("workout:", body);
   Workout.create(body)
     .then((dbWorkout) => {
       res.json(dbWorkout);

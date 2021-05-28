@@ -14,8 +14,8 @@ router.get("/stats", (req, res) => {
 });
 
 // If no matching route is found default to home
-router.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+// router.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../public/index.html"));
+// });
 
 module.exports = router;
