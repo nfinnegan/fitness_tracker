@@ -13,4 +13,20 @@ router.post("/workouts", ({ body }, res) => {
     });
 });
 
+//add exercise
+router.put("/workouts/:id", ({ body, params }, res) => {
+  //console.log("line18", { _id });
+  Workout.findByIdAndUpdate(
+    { _id: params.id },
+    { $set: { exercises: body } },
+    { new: true }
+  )
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
 module.exports = router;
