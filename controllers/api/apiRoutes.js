@@ -29,4 +29,17 @@ router.put("/workouts/:id", ({ body, params }, res) => {
     });
 });
 
+//get last workout
+router.get("/workouts", (req, res) => {
+  Workout.find({})
+    .then((dbWorkout) => {
+      // console.log("testing", dbWorkout.exercises.duration);
+      //still need duration to to show
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
 module.exports = router;
