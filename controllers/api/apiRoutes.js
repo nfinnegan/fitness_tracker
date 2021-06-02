@@ -33,8 +33,23 @@ router.put("/workouts/:id", ({ body, params }, res) => {
 router.get("/workouts", (req, res) => {
   Workout.find({})
     .then((dbWorkout) => {
-      // console.log("testing", dbWorkout.exercises.duration);
-      //still need duration to to show
+      for (i = 0; i < dbWorkout.length; i++) {
+        console.log(dbWorkout.exercises[i].duration);
+      }
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+//get workouts in range
+router.get("/workouts/range", (req, res) => {
+  Workout.find({})
+    .populate("exercises")
+    .sort({ day: -1 })
+    .limit(7)
+    .then((dbWorkout) => {
       res.json(dbWorkout);
     })
     .catch((err) => {
