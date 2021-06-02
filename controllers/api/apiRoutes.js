@@ -49,13 +49,11 @@ router.get("/workouts", (req, res) => {
     });
 });
 
-
-
 //get workouts in range
 router.get("/workouts/range", (req, res) => {
   Workout.find({})
-    .populate("exercises")
     .sort({ day: -1 })
+    .populate("exercises")
     .limit(7)
     .then((dbWorkout) => {
       res.json(dbWorkout);
