@@ -18,8 +18,10 @@ router.put("/workouts/:id", ({ body, params }, res) => {
   //console.log("line18", { _id });
   Workout.findByIdAndUpdate(
     { _id: params.id },
-    { $set: { exercises: body } },
-    { new: true }
+    {
+      $inc: { totalDuration: body.duration },
+      $push: { exercises: body },
+    }
   )
     .then((dbWorkout) => {
       res.json(dbWorkout);
@@ -54,7 +56,7 @@ router.get("/workouts/range", (req, res) => {
   Workout.find({})
     .sort({ day: -1 })
     .populate("exercises")
-    .limit(7)
+    //.limit(20)
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
