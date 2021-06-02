@@ -31,17 +31,25 @@ router.put("/workouts/:id", ({ body, params }, res) => {
 
 //get last workout
 router.get("/workouts", (req, res) => {
-  Workout.find({})
-    .then((dbWorkout) => {
-      for (i = 0; i < dbWorkout.length; i++) {
-        console.log(dbWorkout.exercises[i].duration);
-      }
-      res.json(dbWorkout);
+  //BCS learning assistant assist on approach
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: {
+          $sum: "$exercises.duration",
+        },
+      },
+    },
+  ])
+    .then((dbWorkouts) => {
+      res.json(dbWorkouts);
     })
     .catch((err) => {
-      res.status(400).json(err);
+      res.json(err);
     });
 });
+
+
 
 //get workouts in range
 router.get("/workouts/range", (req, res) => {
