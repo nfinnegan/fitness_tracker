@@ -28,16 +28,18 @@ The user should be able to:
 
 ## Technologies Used
 
-* Express.js
-* Mongoose
-* MongoDB & Atlas
-* Node.js
+- Express.js
+- Mongoose
+- MongoDB & Atlas
+- Node.js
 
 ## Preview
 
+![Fitness_Tracker_Preview](assets/fitnesstracker.gif)
+
 ## Deployed Application
 
-## Resources
+- https://exerciselogging.herokuapp.com/
 
 ## License
 
